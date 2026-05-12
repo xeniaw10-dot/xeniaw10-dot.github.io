@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xenia Laura Walter — Abstract Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,200;0,300;0,400;1,200&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: #ffffff; }
+
+body {
+  background: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: #1c1c1c;
+}
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 42px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.logo {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #1c1c1c;
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #1c1c1c; }
+
+.section-header {
+  padding: 54px 42px 38px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.section-header h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.section-header h1 span {
+  display: block;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.header-right { text-align: right; padding-bottom: 4px; }
+.header-right p {
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #aaa;
+  line-height: 2;
+}
+
+.project { border-bottom: 1px solid #ebebeb; }
+
+.layout-a {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: 1fr auto;
+}
+.layout-a .img-main { grid-column:1; grid-row:1/3; }
+.layout-a .img-secondary { grid-column:2; grid-row:1; border-left:1px solid #ebebeb; }
+.layout-a .text-block { grid-column:2; grid-row:2; border-left:1px solid #ebebeb; border-top:1px solid #ebebeb; }
+
+.layout-b { display: grid; grid-template-columns: 1fr 1fr; }
+.layout-b .text-block { border-left: 1px solid #ebebeb; }
+
+.layout-c { display: grid; grid-template-columns: 1fr 1fr; }
+.layout-c .text-block { border-right: 1px solid #ebebeb; }
+
+.img-block {
+  width: 100%; height: 100%;
+  min-height: 300px;
+  background: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.img-block img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+.img-block:hover img { transform: scale(1.03); }
+.img-block.tall { min-height: 480px; }
+.img-block.medium { min-height: 300px; }
+
+.text-block {
+  padding: 32px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-label {
+  font-weight: 200;
+  font-size: 0.5rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #b8b3ab;
+  margin-bottom: 12px;
+}
+
+.project-title {
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  color: #1c1c1c;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.project-title strong { font-weight: 400; }
+
+.project-desc {
+  font-size: 0.68rem;
+  line-height: 1.85;
+  color: #888;
+  margin-bottom: 18px;
+}
+
+.project-meta {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c8c3bb;
+}
+
+.view-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.5rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #1c1c1c;
+  text-decoration: none;
+  border-bottom: 1px solid #1c1c1c;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+  width: fit-content;
+}
+.view-link:hover { opacity: 0.35; }
+
+.auftrag {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #ebebeb;
+}
+.auftrag .img-block { min-height: 400px; }
+.auftrag .text-block { border-left: 1px solid #ebebeb; padding: 48px 40px; }
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #ebebeb;
+}
+.about-block {
+  padding: 48px 42px;
+  border-right: 1px solid #ebebeb;
+}
+.about-block h3, .kontakt-block h3 {
+  font-weight: 300;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.about-block p, .kontakt-block p {
+  font-size: 0.68rem;
+  line-height: 1.85;
+  color: #888;
+  margin-bottom: 10px;
+}
+.kontakt-block {
+  padding: 48px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.kontakt-block a {
+  color: #888;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1px;
+}
+
+footer {
+  padding: 18px 42px;
+  display: flex;
+  justify-content: space-between;
+}
+footer span {
+  font-size: 0.5rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #c5c0b8;
+}
+
+@media (max-width: 640px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .section-header { padding: 30px 20px 22px; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .layout-a, .layout-b, .layout-c, .auftrag, .bottom-row { grid-template-columns: 1fr; }
+  .layout-a .img-main { grid-row: 1; }
+  .layout-a .img-secondary { grid-row: 2; border-left: none; border-top: 1px solid #ebebeb; }
+  .layout-a .text-block { grid-column: 1; grid-row: 3; border-left: none; }
+  .layout-b .text-block, .layout-c .text-block { border-left: none; border-right: none; border-top: 1px solid #ebebeb; }
+  .auftrag .text-block { border-left: none; border-top: 1px solid #ebebeb; }
+  .about-block { border-right: none; border-bottom: 1px solid #ebebeb; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <a class="logo" href="#">Xenia Laura Walter</a>
+    <ul class="nav-links">
+      <li><a href="#werke">Werke</a></li>
+      <li><a href="#auftrag">Auftragswerke</a></li>
+      <li><a href="#about">Über mich</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="section-header">
+    <h1>Abstract<br><span>Artist</span></h1>
+    <div class="header-right">
+      <p>Xenia Laura Walter</p>
+      <p>Köln, Deutschland</p>
+    </div>
+  </div>
+
+  <!-- 1: The Weight of Heat + Pink Noise -->
+  <div class="project" id="werke">
+    <div class="layout-a">
+      <div class="img-main">
+        <div class="img-block tall">
+          <img src="img1.jpeg" alt="The Weight of Heat">
+        </div>
+      </div>
+      <div class="img-secondary">
+        <div class="img-block medium">
+          <img src="img2.jpeg" alt="Pink Noise">
+        </div>
+      </div>
+      <div class="text-block">
+        <p class="project-label">Acryl &amp; Sprühfarbe auf Leinwand</p>
+        <div class="project-title">The Weight <strong>of Heat</strong></div>
+        <p class="project-desc">Ein Profil im Moment der Auflösung — geschlossene Augen, überlagertes Gesicht, Farbe als emotionaler Aggregatzustand. Die Arbeit bewegt sich an der Grenze zwischen Figuration und Abstraktion.</p>
+        <span class="project-meta">100 × 100 cm · 2024</span>
+        <a href="#kontakt" class="view-link">Inquire →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: Inner Interference -->
+  <div class="project">
+    <div class="layout-b">
+      <div class="img-main">
+        <div class="img-block tall">
+          <img src="img3.jpeg" alt="Inner Interference">
+        </div>
+      </div>
+      <div class="text-block">
+        <p class="project-label">Acryl, Tusche &amp; Fineliner auf Leinwand</p>
+        <div class="project-title">Inner <strong>Interference</strong></div>
+        <p class="project-desc">Das Porträt als fragmentierter Träger von Emotion. Präzise Linienführung bricht mit gestischer Farbsetzung — Ultramarin, Neonorange und Magenta überlagern die figurative Struktur und destabilisieren sie zugleich.</p>
+        <span class="project-meta">80 × 100 cm · 2023</span>
+        <a href="#kontakt" class="view-link">Inquire →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3: Soft Erosion -->
+  <div class="project">
+    <div class="layout-c">
+      <div class="text-block">
+        <p class="project-label">Acryl, Flüssigfarbe &amp; Mischtechnik auf Leinwand</p>
+        <div class="project-title">Soft <strong>Erosion</strong></div>
+        <p class="project-desc">Organische Farbverläufe in gebrochenen Grün- und Rosétönen treffen auf gesetzte Neonakzente. Das Werk entwickelt sich aus dem Material heraus — Fluss, Reibung und Sediment als bildnerische Strategie.</p>
+        <span class="project-meta">100 × 140 cm · 2024</span>
+        <a href="#kontakt" class="view-link">Inquire →</a>
+      </div>
+      <div class="img-main">
+        <div class="img-block tall">
+          <img src="img4.jpeg" alt="Soft Erosion">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: Chromatic Lips -->
+  <div class="project">
+    <div class="layout-b">
+      <div class="img-main">
+        <div class="img-block tall">
+          <img src="img5.jpeg" alt="Chromatic Lips">
+        </div>
+      </div>
+      <div class="text-block">
+        <p class="project-label">Acryl &amp; Sprühfarbe auf Leinwand</p>
+        <div class="project-title">Chromatic <strong>Lips</strong></div>
+        <p class="project-desc">Figuration reduziert auf ein einziges Detail — der Mund als Zentrum zwischen Stille und Ausbruch. Farbe explodiert aus dem Motiv heraus, überwältigt es und befreit es zugleich.</p>
+        <span class="project-meta">120 × 140 cm · 2024</span>
+        <a href="#kontakt" class="view-link">Inquire →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUFTRAGSWERKE -->
+  <div class="auftrag" id="auftrag">
+    <div class="img-block" style="min-height:400px">
+      <img src="img6.jpeg" alt="Commissioned Work">
+    </div>
+    <div class="text-block">
+      <p class="project-label">Commissioned Work</p>
+      <div class="project-title">Made for<br><strong>your space.</strong></div>
+      <p class="project-desc">Jedes Auftragswerk entsteht in direkter Zusammenarbeit — abgestimmt auf Raum, Farbwelt und Atmosphäre. Kein Template, kein Kompromiss. Ein Werk, das genau dort hingehört, wo es hängt.</p>
+      <p class="project-desc">Format, Technik und Farbpalette werden gemeinsam entwickelt.</p>
+      <a href="#kontakt" class="view-link">Start a conversation →</a>
+    </div>
+  </div>
+
+  <!-- ABOUT + KONTAKT -->
+  <div class="bottom-row">
+    <div class="about-block" id="about">
+      <h3>Xenia Laura Walter</h3>
+      <p>Abstrakte Künstlerin aus Köln. Meine Praxis bewegt sich zwischen gestischer Abstraktion und figurativen Elementen — verbunden durch leuchtende Farben, spontane Geste und rohe Energie.</p>
+      <p>Jedes Werk entsteht ohne Vorlage, direkt aus dem Moment. Acryl, Sprühfarbe und Strukturpaste auf Leinwand.</p>
+      <a href="mailto:xenialaurawalter@gmail.com" class="view-link">Kontakt aufnehmen →</a>
+    </div>
+    <div class="kontakt-block" id="kontakt">
+      <h3>Kontakt</h3>
+      <p>Anfragen zu Originalwerken,<br>Auftragsarbeiten &amp; Kooperationen:</p>
+      <p><a href="mailto:xenialaurawalter@gmail.com">xenialaurawalter@gmail.com</a></p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 Xenia Laura Walter</span>
+    <span>Köln, Deutschland</span>
+  </footer>
+
+</div>
+</body>
+</html>
