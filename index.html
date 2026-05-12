@@ -242,11 +242,23 @@ footer span {
   .section-header { padding: 30px 20px 22px; flex-direction: column; gap: 14px; align-items: flex-start; }
   .layout-a, .layout-b, .layout-c, .auftrag, .bottom-row { grid-template-columns: 1fr; }
   .layout-a .img-main { grid-row: 1; }
-  .layout-a .img-secondary { grid-row: 2; border-left: none; border-top: 1px solid #ebebeb; }
-  .layout-a .text-block { grid-column: 1; grid-row: 3; border-left: none; }
-  .layout-b .text-block, .layout-c .text-block { border-left: none; border-right: none; border-top: 1px solid #ebebeb; }
+  .layout-a .img-secondary { display: none; }
+  .layout-a .text-block { grid-column: 1; grid-row: 2; border-left: none; border-top: 1px solid #ebebeb; }
+  
+  /* layout-b: image first, text second */
+  .layout-b .img-main { order: 1; }
+  .layout-b .text-block { order: 2; border-left: none; border-right: none; border-top: 1px solid #ebebeb; }
+  
+  /* layout-c: text first, image second — alternates with layout-b */
+  .layout-c { display: flex; flex-direction: column; }
+  .layout-c .text-block { order: 2; border-left: none; border-right: none; border-top: 1px solid #ebebeb; }
+  .layout-c .img-main { order: 1; }
+
   .auftrag .text-block { border-left: none; border-top: 1px solid #ebebeb; }
   .about-block { border-right: none; border-bottom: 1px solid #ebebeb; }
+  
+  .img-block.tall { min-height: 360px; }
+  .text-block { padding: 24px 20px; }
 }
 </style>
 </head>
@@ -397,4 +409,4 @@ footer span {
 
 </div>
 </body>
-</html>
+</
